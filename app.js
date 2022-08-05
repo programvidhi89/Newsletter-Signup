@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const requests = require("requests");
 
 const https  =require("https");
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -38,10 +39,9 @@ app.post("/",function(req,res){
 
     const options = {
         method:"POST",
-        auth:"alsa:aed398ccb605969eb38b07bf90ebe814e-us8",
-
-
+        auth:process.env.AUTH
     }
+    console.log(process.env);
    const request =  https.request(url,options,function(response){
 
     if(response.statusCode===200){
@@ -65,9 +65,3 @@ app.listen(process.env.PORT || 3000,function(){
 })
 
 
-//API key
-
-//ed398ccb605969eb38b07bf90ebe814e-us8
-
-//unique  audience id
-//5174ce2c05
